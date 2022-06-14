@@ -19,7 +19,8 @@ def shutudai():
     k7 = "甥っ子"
     k8 = "おいっこ"
     kotae = [k1, k2, k3, k4, k5, k6, k7, k8]
-    m = random(mondai)
+    m = random.choice(mondai)
+    print(m)
     return m
 
 def kaitou(seikai):
@@ -53,6 +54,7 @@ def kaitou(seikai):
         else:
             print("不正解")
 
-
+if __name__ == "__main__":
+    main()
 
 
