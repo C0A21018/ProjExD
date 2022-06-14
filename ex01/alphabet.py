@@ -22,10 +22,10 @@ def shutudai():
 
     print(f"対象文字：{all_char_lst}")
 
-    abs_char_lst = random.sample()
+    abs_char_lst = random.sample(alphabets, NUM_OF_ABS_CHAR)
     print(f"欠損文字：{abs_char_lst}")
 
-    pre_char_lst = []
+    pre_char_lst = [chr(c+65) for c in range(8)]
     print(F"表示文字：{pre_char_lst}")
 
     return abs_char_lst
