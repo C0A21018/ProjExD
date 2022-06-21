@@ -15,7 +15,6 @@ def button_click(event):
         pos_end_prev = len(entry.get())-1
         entry.delete(pos_end_prev, tk.END)
     else:    
-        #tkm.showinfo("", f"{num}のボタンがクリックされました")
         entry.insert(tk.END, num)
 
 if __name__ == "__main__":
