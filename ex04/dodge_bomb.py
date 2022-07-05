@@ -8,11 +8,11 @@ def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen_sfc = pg.display.set_mode((1600, 900))
     screen_rct = screen_sfc.get_rect()
-    bgimg_sfc = pg.image.load=("fig/pg_bg.jpg")
-    bgimg_rct = screen_sfc.get_rect()
-    #screen_sfc.blit(bgimg_sfc, bgimg_rct)
+    bgimg_sfc = pg.image.load("ex04/fig/pg_bg.jpg")
+    bgimg_rct = bgimg_sfc.get_rect()
+    screen_sfc.blit(bgimg_sfc, bgimg_rct)
 
-    kkimg_sfc = pg.image.load("fig/6.png")
+    kkimg_sfc = pg.image.load("ex04/fig/6.png")
     kkimg_sfc = pg.transform.rotozoom(kkimg_sfc, 0, 2.0)
     kkimg_rct = kkimg_sfc.get_rect()
     kkimg_rct.center = 900, 400
@@ -32,6 +32,9 @@ def main():
             if event.type == pg.QUIT: return
 
         key_states = pg.key.get_pressed()
+        #if key_states[pg.K_c]:
+            #kkimg_sfc = pg.image.load("fig/11.png")
+            #kkimg_sfc = pg.transform.rotozoom(kkimg_sfc, 0, 0.2)
         if key_states[pg.K_UP] == True: kkimg_rct.centery -= 1
         if key_states[pg.K_DOWN] == True: kkimg_rct.centery += 1
         if key_states[pg.K_LEFT] == True: kkimg_rct.centerx -= 1
@@ -48,9 +51,12 @@ def main():
         screen_sfc.blit(bmimg_sfc, bmimg_rct)
 
         yoko, tate = check_bound(bmimg_rct, bmimg_rct)
+        if yoko == -1:
+            vx *= -1.2
+        if tate == -1:
+            vy *= -1.2
         vx *= yoko
         vy *= tate
-
         if kkimg_rct.colliderect(bmimg_rct): return
         
         pg.display.update()
