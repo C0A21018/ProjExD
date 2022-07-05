@@ -40,7 +40,8 @@ def main():
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
         #練習2
         for event in pg.event.get():
-            if event.type == pg.QUIT: return
+            if event.type == pg.QUIT:
+                return
         #練習4,7
         key_states = pg.key.get_pressed()  #辞書
         #if key_states[pg.K_c]:
@@ -80,8 +81,10 @@ def main():
 
 def check_bound(rct, scr_rct):
     yoko, tate = +1, +1  #領域内
-    if rct.left < scr_rct.left or scr_rct.right  < rct.right : yoko = -1  #領域外
-    if rct.top  < scr_rct.top  or scr_rct.bottom < rct.bottom: tate = -1  #領域外
+    if rct.left < scr_rct.left or scr_rct.right  < rct.right : 
+        yoko = -1  #領域外
+    if rct.top  < scr_rct.top  or scr_rct.bottom < rct.bottom: 
+        tate = -1  #領域外
     return yoko, tate
 
 if __name__ == "__main__":
