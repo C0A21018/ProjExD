@@ -68,6 +68,37 @@ class Bomb():
         # 練習5
         self.blit(scr)
 
+img_weapon = pg.image.load("bullet.png")
+pg_y = 0
+px = 320
+py = 240
+bx = 0
+by = 0
+space = 0
+BULLET_MAX = 100
+bull_n = 0
+bull_x =[0] * BULLET_MAX
+bull_y =[0] * BULLET_MAX
+bull_f =[False] * BULLET_MAX
+
+
+class Shooting():
+    def set_bullet():
+        global bull_n
+        bull_f[bull_n] = True
+        bull_x[bull_n] = px-16
+        bull_y[bull_n] = py-32
+        bull_n = (bull_n+1)%BULLET_MAX
+    
+    def move_bullet(screen):
+        for i in range(BULLET_MAX):
+            if bull_f[i] == True:
+                bull_y[i] = bull_y[i] - 32
+                screen.bullet(img_weapon, [bull_x[i], bull_y[i]])
+                if bull_y[i] < 0:
+                    bull_f[i] = False
+
+
 def main():
     clock = pg.time.Clock()
 
@@ -97,8 +128,10 @@ def main():
     #bmimg_rct.centery = random.randint(0, screen_rct.height)
     #vx, vy = +1, +1 # 練習6
     bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)         #爆弾
-    #bkd_2 = Bomb((160, 32, 255), 30, (+1, +1), scr)    #爆弾の追加(紫)
-    #bkd_3 = Bomb((255, 96, 208), 20, (+1, +1), scr)    #爆弾の追加(ピンク)
+    bkd_2 = Bomb((160, 32, 255), 30, (+1, +1), scr)    #爆弾の追加(紫)
+    bkd_3 = Bomb((255, 96, 208), 20, (+1, +1), scr)    #爆弾の追加(ピンク)
+
+    sho = Shooting()
 
     while True:
         scr.blit()
@@ -132,17 +165,17 @@ def main():
         #vx *= yoko
         #vy *= tate
         bkd.update(scr)
-        #bkd_2.update(scr)
-        #bkd_3.update(scr)
+        bkd_2.update(scr)
+        bkd_3.update(scr)
 
         # 練習8
         #if kkimg_rct.colliderect(bmimg_rct): return 
         if kkt.rct.colliderect(bkd.rct):
             return
-        #if kkt.rct.colliderect(bkd_2.rct):
-        #    return
-        #if kkt.rct.colliderect(bkd_3.rct):
-        #    return
+        if kkt.rct.colliderect(bkd_2.rct):
+            return
+        if kkt.rct.colliderect(bkd_3.rct):
+            return
         pg.display.update()
         clock.tick(1000)
 
