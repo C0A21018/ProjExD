@@ -99,7 +99,6 @@ class Shooting():
 def main():
     clock = pg.time.Clock()
 
-    # 練習1：スクリーンと背景画像
     scr = Screen("逃げろ！こうかとん", (1600, 900), "ex04/fig/pg_bg.jpg")
 
     kkt = Bird("ex04/fig/6.png", 2.0, (900, 400))
